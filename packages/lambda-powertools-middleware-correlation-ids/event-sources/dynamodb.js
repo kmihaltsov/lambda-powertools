@@ -1,6 +1,6 @@
 const dynamo = require('aws-sdk/clients/dynamodb')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
-const Log = require('@dazn/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
 const consts = require('../consts')
 
 function isMatch (event) {
@@ -48,12 +48,6 @@ function captureCorrelationIds ({ Records }, context, sampleDebugLogRate) {
         correlationIds[consts.X_CORRELATION_ID] = awsRequestId
       }
 
-      if (!correlationIds[consts.DEBUG_LOG_ENABLED]) {
-        correlationIds[consts.DEBUG_LOG_ENABLED] = Math.random() < sampleDebugLogRate ? 'true' : 'false'
-      }
-
-      correlationIds[consts.CALL_CHAIN_LENGTH] = (correlationIds[consts.CALL_CHAIN_LENGTH] || 0) + 1
-
       const correlationIdsInstance = new CorrelationIds(correlationIds)
 
       Object.defineProperties(event, {
@@ -75,9 +69,8 @@ function captureCorrelationIds ({ Records }, context, sampleDebugLogRate) {
   // although we're going to have per-record correlation IDs, the default one for the function
   // should still have the awsRequestId at least
   CorrelationIds.replaceAllWith({
-    'x-correlation-id': awsRequestId,
-    awsRequestId,
-    [consts.DEBUG_LOG_ENABLED]: Math.random() < sampleDebugLogRate ? 'true' : 'false'
+    [consts.X_CORRELATION_ID]: awsRequestId,
+    awsRequestId
   })
 }
 

@@ -6,7 +6,7 @@ const mockPublish = jest.fn()
 AWS.SNS.prototype.publish = mockPublish
 
 const SNS = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockPublish.mockReturnValueOnce({
@@ -40,7 +40,7 @@ describe('SNS client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in MessageAttributes', async () => {
         CorrelationIds.replaceAllWith({
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true',
           'call-chain-length': 1
         })
@@ -55,7 +55,7 @@ describe('SNS client', () => {
           Message: 'test',
           TopicArn: 'topic-arn',
           MessageAttributes: {
-            'x-correlation-id': {
+            'x_correlation_id': {
               DataType: 'String',
               StringValue: 'id'
             },
@@ -76,7 +76,7 @@ describe('SNS client', () => {
   describe('.publishWithCorrelationIds', () => {
     it('forwards given correlationIds in MessageAttributes field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true',
         'call-chain-length': 1
       })
@@ -91,7 +91,7 @@ describe('SNS client', () => {
         Message: 'test',
         TopicArn: 'topic-arn',
         MessageAttributes: {
-          'x-correlation-id': {
+          'x_correlation_id': {
             DataType: 'String',
             StringValue: 'child-id'
           },

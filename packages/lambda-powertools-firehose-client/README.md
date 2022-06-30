@@ -1,6 +1,6 @@
 # `lambda-powertools-firehose-client`
 
-Firehose client wrapper that knows how to forward correlation IDs (captured via `@dazn/lambda-powertools-correlation-ids`).
+Firehose client wrapper that knows how to forward correlation IDs (captured via `@kmihaltsov/lambda-powertools-correlation-ids`).
 
 Main features:
 
@@ -10,14 +10,14 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-firehose-client`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-firehose-client`
 
 ## API
 
 It's exactly the same as the Kinesis client from the AWS SDK.
 
 ```js
-const Firehose = require('@dazn/lambda-powertools-firehose-client')
+const Firehose = require('@kmihaltsov/lambda-powertools-firehose-client')
 
 const publishEvent = async () => {
   const putRecordReq = {

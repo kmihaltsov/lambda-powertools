@@ -1,7 +1,7 @@
 const _ = require('lodash')
 const uuid = require('uuid/v4')
 const middy = require('@middy/core')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 const captureCorrelationIds = require('../index')
 
 global.console.log = jest.fn()
@@ -49,12 +49,10 @@ const kinesisTests = () => {
       await invokeKinesisHandler(genKinesisEvent(), requestId, 0,
         x => {
           expect(x['awsRequestId']).toBe(requestId)
-          expect(x['debug-log-enabled']).toBe('false')
         },
         record => {
           const x = record.correlationIds.get()
           expect(x['awsRequestId']).toBe(requestId)
-          expect(x['debug-log-enabled']).toBe('false')
         })
     })
   })
@@ -65,7 +63,6 @@ const kinesisTests = () => {
       await invokeKinesisHandler(genKinesisEventWithoutJSON(), requestId, 0,
         x => {
           expect(x['awsRequestId']).toBe(requestId)
-          expect(x['debug-log-enabled']).toBe('false')
         },
         parsedRecord => {
           // We didn't parse any records as they were json.
@@ -80,12 +77,10 @@ const kinesisTests = () => {
       await invokeKinesisHandler(genKinesisEvent(), requestId, 1,
         x => {
           expect(x['awsRequestId']).toBe(requestId)
-          expect(x['debug-log-enabled']).toBe('true')
         },
         record => {
           const x = record.correlationIds.get()
           expect(x['awsRequestId']).toBe(requestId)
-          expect(x['debug-log-enabled']).toBe('true')
         })
     })
   })
@@ -96,26 +91,14 @@ const kinesisTests = () => {
       await invokeKinesisHandler(genKinesisEvent(), requestId, 0,
         x => {
           // correlation IDs at the handler level
-          expect(x['x-correlation-id']).toBe(requestId)
+          expect(x['x_correlation_id']).toBe(requestId)
           expect(x['awsRequestId']).toBe(requestId)
         },
         record => {
           const x = record.correlationIds.get()
           // correlation IDs at the record level should just take from the handler
-          expect(x['x-correlation-id']).toBe(requestId)
+          expect(x['x_correlation_id']).toBe(requestId)
           expect(x['awsRequestId']).toBe(requestId)
-        })
-    })
-  })
-
-  describe('when call-chain-length is not provided in the event', () => {
-    it('sets it to 1', async () => {
-      const requestId = uuid()
-      await invokeKinesisHandler(genKinesisEvent(), requestId, 0,
-        x => {}, // n/a
-        record => {
-          const x = record.correlationIds.get()
-          expect(x['call-chain-length']).toBe(1)
         })
     })
   })
@@ -132,10 +115,8 @@ const kinesisTests = () => {
       userId = uuid()
 
       const correlationIds = {
-        'x-correlation-id': id,
-        'x-correlation-user-id': userId,
-        'User-Agent': 'jest test',
-        'debug-log-enabled': 'true'
+        'x_correlation_id': id,
+        'x_correlation_user-id': userId
       }
 
       const event = genKinesisEvent(correlationIds)
@@ -148,17 +129,16 @@ const kinesisTests = () => {
     })
 
     it('still has the correct handler correlation IDs', () => {
-      expect(handlerCorrelationIds['x-correlation-id']).toBe(requestId)
+      expect(handlerCorrelationIds['x_correlation_id']).toBe(requestId)
       expect(handlerCorrelationIds['awsRequestId']).toBe(requestId)
     })
 
     it('captures them on the record', () => {
       const x = record.correlationIds.get()
       // correlation IDs at the record level should match what was passed in
-      expect(x['x-correlation-id']).toBe(id)
-      expect(x['x-correlation-user-id']).toBe(userId)
-      expect(x['User-Agent']).toBe('jest test')
-      expect(x['debug-log-enabled']).toBe('true')
+      expect(x['x_correlation_id']).toBe(id)
+      expect(x['x_correlation_user-id']).toBe(userId)
+
       expect(x['awsRequestId']).toBe(requestId)
     })
 
@@ -171,30 +151,6 @@ const kinesisTests = () => {
       expect(record).toHaveProperty('logger')
       expect(record.propertyIsEnumerable('logger')).toBe(false)
       expect(record.logger.correlationIds).toBe(record.correlationIds)
-    })
-  })
-
-  describe('when correlation IDs are provided in the event', () => {
-    let record
-    let id
-
-    beforeEach(async () => {
-      id = uuid()
-
-      const correlationIds = {
-        'x-correlation-id': id,
-        'call-chain-length': 1
-      }
-
-      const event = genKinesisEvent(correlationIds)
-      await invokeKinesisHandler(event, uuid(), 0,
-        () => {},
-        aRecord => { record = aRecord })
-    })
-
-    it('increments it by 1', () => {
-      const x = record.correlationIds.get()
-      expect(x['call-chain-length']).toBe(2)
     })
   })
 }

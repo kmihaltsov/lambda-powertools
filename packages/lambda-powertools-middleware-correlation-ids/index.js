@@ -1,4 +1,4 @@
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 const generic = require('./event-sources/generic')
 const eventSources = [
   require('./event-sources/api-gateway'),

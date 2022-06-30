@@ -1,6 +1,6 @@
-const SNS = require('@dazn/lambda-powertools-sns-client')
-const DynamoDB = require('@dazn/lambda-powertools-dynamodb-client')
-const kinesisProcessor = require('@dazn/lambda-powertools-pattern-basic')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
+const DynamoDB = require('@kmihaltsov/lambda-powertools-dynamodb-client')
+const kinesisProcessor = require('@kmihaltsov/lambda-powertools-pattern-basic')
 const uuid = require('uuid/v4')
 
 const { TOPIC_ARN, TABLE_NAME } = process.env

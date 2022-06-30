@@ -1,7 +1,7 @@
 process.env.AWS_NODEJS_CONNECTION_REUSE_ENABLED = '1'
 const SQS = require('aws-sdk/clients/sqs')
 const client = new SQS()
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 function addCorrelationIds (correlationIds, messageAttributes) {
   const attributes = {}

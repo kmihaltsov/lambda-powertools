@@ -1,6 +1,6 @@
 # lambda-powertools-eventbridge-client
 
-EventBridge client wrapper that knows how to forward correlation IDs (captured via `@dazn/lambda-powertools-correlation-ids`).
+EventBridge client wrapper that knows how to forward correlation IDs (captured via `@kmihaltsov/lambda-powertools-correlation-ids`).
 
 Main features:
 
@@ -10,14 +10,14 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-eventbridge-client`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-eventbridge-client`
 
 ## API
 
 It's exactly the same as the EventBridge client from the AWS SDK.
 
 ```js
-const EventBridge = require('@dazn/lambda-powertools-eventbridge-client')
+const EventBridge = require('@kmihaltsov/lambda-powertools-eventbridge-client')
 
 const publishEvents = async () => {
   const putEventsReq = {

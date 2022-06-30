@@ -1,5 +1,5 @@
-const SNS = require('@dazn/lambda-powertools-sns-client')
-const firehoseProcessor = require('@dazn/lambda-powertools-pattern-basic')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
+const firehoseProcessor = require('@kmihaltsov/lambda-powertools-pattern-basic')
 
 module.exports.handler = firehoseProcessor(async (event, context) => {
   console.log(JSON.stringify(event))

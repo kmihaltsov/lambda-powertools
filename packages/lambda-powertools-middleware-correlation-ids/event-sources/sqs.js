@@ -1,5 +1,5 @@
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
-const Log = require('@dazn/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
 const consts = require('../consts')
 
 function isMatch (event) {
@@ -42,27 +42,13 @@ function captureCorrelationIds (event, context, sampleDebugLogRate) {
     }
 
     for (const msgAttribute in msgAttributes) {
-      if (msgAttribute.toLowerCase().startsWith('x-correlation-')) {
+      if (msgAttribute.toLowerCase().startsWith('x_correlation_')) {
         correlationIds[msgAttribute] = msgAttributes[msgAttribute].stringValue
-      } else if (msgAttribute === consts.USER_AGENT) {
-        correlationIds[consts.USER_AGENT] = msgAttributes[consts.USER_AGENT].stringValue
-      } else if (msgAttribute === consts.DEBUG_LOG_ENABLED) {
-        correlationIds[consts.DEBUG_LOG_ENABLED] = msgAttributes[consts.DEBUG_LOG_ENABLED].stringValue
-      } else if (msgAttribute === consts.CALL_CHAIN_LENGTH) {
-        correlationIds[consts.CALL_CHAIN_LENGTH] = parseInt(msgAttributes[consts.CALL_CHAIN_LENGTH].stringValue) + 1
       }
     }
 
     if (!correlationIds[consts.X_CORRELATION_ID]) {
       correlationIds[consts.X_CORRELATION_ID] = awsRequestId
-    }
-
-    if (!correlationIds[consts.DEBUG_LOG_ENABLED]) {
-      correlationIds[consts.DEBUG_LOG_ENABLED] = Math.random() < sampleDebugLogRate ? 'true' : 'false'
-    }
-
-    if (!correlationIds[consts.CALL_CHAIN_LENGTH]) {
-      correlationIds[consts.CALL_CHAIN_LENGTH] = 1
     }
 
     const correlationIdsInstance = new CorrelationIds(correlationIds)
@@ -82,9 +68,8 @@ function captureCorrelationIds (event, context, sampleDebugLogRate) {
   // although we're going to have per-record correlation IDs, the default one for the function
   // should still have the awsRequestId at least
   CorrelationIds.replaceAllWith({
-    'x-correlation-id': awsRequestId,
-    awsRequestId,
-    [consts.DEBUG_LOG_ENABLED]: Math.random() < sampleDebugLogRate ? 'true' : 'false'
+    [consts.X_CORRELATION_ID]: awsRequestId,
+    awsRequestId
   })
 }
 

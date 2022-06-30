@@ -1,5 +1,5 @@
-const DynamoDBProcessor = require('@dazn/lambda-powertools-pattern-basic')
-const SNS = require('@dazn/lambda-powertools-sns-client')
+const DynamoDBProcessor = require('@kmihaltsov/lambda-powertools-pattern-basic')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
 
 const { TOPIC_ARN } = process.env
 

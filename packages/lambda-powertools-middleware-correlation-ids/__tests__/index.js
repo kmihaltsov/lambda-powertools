@@ -9,17 +9,6 @@ describe('correlation IDs are always initialized', () => {
       const requestId = uuid()
       invokeHandler({}, requestId, 0, x => {
         expect(x['awsRequestId']).toBe(requestId)
-        expect(x['debug-log-enabled']).toBe('false')
-      })
-    })
-  })
-
-  describe('when sampleDebugLogRate = 1', () => {
-    it('always sets debug-log-enabled to true', () => {
-      const requestId = uuid()
-      invokeHandler({}, requestId, 1, x => {
-        expect(x['awsRequestId']).toBe(requestId)
-        expect(x['debug-log-enabled']).toBe('true')
       })
     })
   })
@@ -27,7 +16,7 @@ describe('correlation IDs are always initialized', () => {
   it('always initialises it from the awsRequestId', () => {
     const requestId = uuid()
     invokeHandler({}, requestId, 0, x => {
-      expect(x['x-correlation-id']).toBe(requestId)
+      expect(x['x_correlation_id']).toBe(requestId)
       expect(x['awsRequestId']).toBe(requestId)
     })
   })

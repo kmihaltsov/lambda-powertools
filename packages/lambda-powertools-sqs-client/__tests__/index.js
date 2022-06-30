@@ -8,7 +8,7 @@ AWS.SQS.prototype.sendMessage = mockSendMessage
 AWS.SQS.prototype.sendMessageBatch = mockSendMessageBatch
 
 const SQS = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockSendMessage.mockReturnValueOnce({
@@ -50,13 +50,13 @@ describe('SQS client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in MessageAttributes', async () => {
         CorrelationIds.replaceAllWith({
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true',
           'call-chain-length': 1
         })
 
         await verifySendMessage({
-          'x-correlation-id': {
+          'x_correlation_id': {
             DataType: 'String',
             StringValue: 'id'
           },
@@ -89,13 +89,13 @@ describe('SQS client', () => {
     }
     it('forwards given correlationIds in MessageAttributes field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true',
         'call-chain-length': 1
       })
 
       await verifySendMessageWithCorrelationIds(correlationIds, {
-        'x-correlation-id': {
+        'x_correlation_id': {
           DataType: 'String',
           StringValue: 'child-id'
         },
@@ -140,12 +140,12 @@ describe('SQS client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in MessageAttributes', async () => {
         CorrelationIds.replaceAllWith({
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         })
 
         await verifySendMessageBatch({
-          'x-correlation-id': {
+          'x_correlation_id': {
             DataType: 'String',
             StringValue: 'id'
           },
@@ -180,12 +180,12 @@ describe('SQS client', () => {
 
     it('forwards given correlationIds in MessageAttributes field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'id',
+        'x_correlation_id': 'id',
         'debug-log-enabled': 'true'
       })
 
       await verifySendMessageBatchWithCorrelationIds(correlationIds, {
-        'x-correlation-id': {
+        'x_correlation_id': {
           DataType: 'String',
           StringValue: 'id'
         },

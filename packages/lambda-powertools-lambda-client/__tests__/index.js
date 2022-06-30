@@ -6,7 +6,7 @@ AWS.Lambda.prototype.invoke = mockInvoke
 AWS.Lambda.prototype.invokeAsync = mockInvokeAsync
 
 const Lambda = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 global.console.log = jest.fn()
 
@@ -125,7 +125,7 @@ describe('Lambda client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -166,7 +166,7 @@ describe('Lambda client', () => {
   describe('.invokeWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
@@ -184,7 +184,7 @@ describe('Lambda client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -223,7 +223,7 @@ describe('Lambda client', () => {
   describe('.invokeAsyncWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 

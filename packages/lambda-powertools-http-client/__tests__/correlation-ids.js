@@ -1,4 +1,4 @@
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 const nock = require('nock')
 
 // spy on https.request to see when it's actually called
@@ -43,8 +43,8 @@ describe('HTTP client (correlationIds)', () => {
   describe('when there are no correlationIds', () => {
     it('does not add anything to HTTP headers', async () => {
       await verifyHeaders({}, headers => {
-        expect(headers['x-correlation-id']).toBeUndefined()
-        expect(headers['x-correlation-user-id']).toBeUndefined()
+        expect(headers['x_correlation_id']).toBeUndefined()
+        expect(headers['x_correlation_user-id']).toBeUndefined()
       })
     })
   })
@@ -55,8 +55,8 @@ describe('HTTP client (correlationIds)', () => {
       CorrelationIds.set('user-id', 'theburningmonk')
 
       await verifyHeaders({}, headers => {
-        expect(headers['x-correlation-id']).toBe('id')
-        expect(headers['x-correlation-user-id']).toBe('theburningmonk')
+        expect(headers['x_correlation_id']).toBe('id')
+        expect(headers['x_correlation_user-id']).toBe('theburningmonk')
       })
     })
 
@@ -81,12 +81,12 @@ describe('HTTP client (correlationIds)', () => {
         CorrelationIds.set('user-id', 'theburningmonk')
 
         const userHeaders = {
-          'x-correlation-id': 'user-id' // this should override what we set with the CorrelationIds module
+          'x_correlation_id': 'user-id' // this should override what we set with the CorrelationIds module
         }
 
         await verifyHeaders(userHeaders, headers => {
-          expect(headers['x-correlation-id']).toBe('user-id')
-          expect(headers['x-correlation-user-id']).toBe('theburningmonk')
+          expect(headers['x_correlation_id']).toBe('user-id')
+          expect(headers['x_correlation_user-id']).toBe('theburningmonk')
         })
       })
     })
@@ -96,11 +96,11 @@ describe('HTTP client (correlationIds)', () => {
         CorrelationIds.replaceAllWith({
           awsRequestId: undefined,
           awsRegion: null,
-          'x-correlation-id': 'theburningmonk'
+          'x_correlation_id': 'theburningmonk'
         })
 
         await verifyHeaders({ 'zero': 0 }, headers => {
-          expect(headers['x-correlation-id']).toBe('theburningmonk')
+          expect(headers['x_correlation_id']).toBe('theburningmonk')
           expect(headers['zero']).toBe(0)
           const headerKeys = Object.keys(headers)
           expect(headerKeys).not.toContain('awsRequestId')
@@ -115,12 +115,12 @@ describe('HTTP client (correlationIds)', () => {
       CorrelationIds.set('id', 'id')
 
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyHeaders({}, headers => {
-        expect(headers['x-correlation-id']).toBe('child-id')
+        expect(headers['x_correlation_id']).toBe('child-id')
         expect(headers['debug-log-enabled']).toBe('true')
       }, correlationIds)
     })

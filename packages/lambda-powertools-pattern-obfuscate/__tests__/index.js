@@ -9,14 +9,14 @@ const MockImplementation = () => {
 const SampleLogging = jest.fn()
 // eslint-disable-next-line no-unused-vars
 const MockSampleLogging = jest.mock(
-  '@dazn/lambda-powertools-middleware-sample-logging',
+  '@kmihaltsov/lambda-powertools-middleware-sample-logging',
   () => { return SampleLogging.mockImplementation(MockImplementation) }
 )
 
 const CaptureCorrelationIds = jest.fn()
 // eslint-disable-next-line no-unused-vars
 const MockCaptureCorrelationIds = jest.mock(
-  '@dazn/lambda-powertools-middleware-correlation-ids',
+  '@kmihaltsov/lambda-powertools-middleware-correlation-ids',
   () => { return CaptureCorrelationIds.mockImplementation(MockImplementation) }
 )
 
@@ -27,7 +27,7 @@ afterEach(() => {
   CaptureCorrelationIds.mockClear()
 })
 
-// const LogTimeout = require('@dazn/lambda-powertools-middleware-log-timeout')
+// const LogTimeout = require('@kmihaltsov/lambda-powertools-middleware-log-timeout')
 
 describe('obfuscate pattern', () => {
   describe('when there are no overrides', () => {

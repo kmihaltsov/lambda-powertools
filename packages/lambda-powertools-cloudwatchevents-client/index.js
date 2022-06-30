@@ -1,8 +1,8 @@
 process.env.AWS_NODEJS_CONNECTION_REUSE_ENABLED = '1'
 const CloudWatchEvents = require('aws-sdk/clients/cloudwatchevents')
 const client = new CloudWatchEvents()
-const Log = require('@dazn/lambda-powertools-logger')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 function tryJsonParse (data) {
   if (typeof data !== 'string') {

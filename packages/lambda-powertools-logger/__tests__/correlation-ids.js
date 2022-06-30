@@ -2,7 +2,7 @@
 // might affect other tests. Rather than carefully plan around when to clear them, etc.
 // I thought it'd be easier to just isolate them
 
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 const Log = require('../index')
 
 CorrelationIds.set('id', '42')
@@ -27,15 +27,15 @@ const verify = (f) => {
 const correlationIdsAreIncluded = log => {
   log('test')
   verify(x => {
-    expect(x['x-correlation-id']).toBe('42')
-    expect(x['x-correlation-name']).toBe('theburningmonk')
+    expect(x['x_correlation_id']).toBe('42')
+    expect(x['x_correlation_name']).toBe('theburningmonk')
   })
 }
 
 const paramsOverrideCorrelationIds = log => {
-  log('test', { 'x-correlation-name': 'you should see this instead' })
+  log('test', { 'x_correlation_name': 'you should see this instead' })
   verify(x => {
-    expect(x['x-correlation-name']).toBe('you should see this instead')
+    expect(x['x_correlation_name']).toBe('you should see this instead')
   })
 }
 

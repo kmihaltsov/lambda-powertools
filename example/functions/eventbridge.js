@@ -1,7 +1,7 @@
-const SNS = require('@dazn/lambda-powertools-sns-client')
-const wrap = require('@dazn/lambda-powertools-pattern-basic')
-const Log = require('@dazn/lambda-powertools-logger')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
+const wrap = require('@kmihaltsov/lambda-powertools-pattern-basic')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 module.exports.handler = wrap(async (event, context) => {
   console.log(JSON.stringify(event))

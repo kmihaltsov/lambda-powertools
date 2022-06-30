@@ -6,7 +6,7 @@ AWS.EventBridge.prototype.putEvents = mockPutEvents
 global.console.log = jest.fn()
 
 const EventBridge = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockPutEvents.mockReturnValueOnce({
@@ -87,14 +87,14 @@ describe('EventBridge client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
 
         await verifyPutEventsContext(x => {
           expect(x).toEqual({
-            'x-correlation-id': 'id',
+            'x_correlation_id': 'id',
             'debug-log-enabled': 'true'
           })
         })
@@ -105,13 +105,13 @@ describe('EventBridge client', () => {
   describe('.putEventsWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyPutEventsWithCorrelationIdsContext(correlationIds, x => {
         expect(x).toEqual({
-          'x-correlation-id': 'child-id',
+          'x_correlation_id': 'child-id',
           'debug-log-enabled': 'true'
         })
       })

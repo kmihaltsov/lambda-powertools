@@ -10,7 +10,7 @@ AWS.DynamoDB.DocumentClient.prototype.batchWrite = mockBatchWrite
 AWS.DynamoDB.DocumentClient.prototype.transactWrite = mockTransactWrite
 
 const DynamoDB = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 global.console.log = jest.fn()
 
@@ -51,7 +51,7 @@ describe('DynamoDB client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -63,7 +63,7 @@ describe('DynamoDB client', () => {
   describe('.putWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
@@ -107,7 +107,7 @@ describe('DynamoDB client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -130,7 +130,7 @@ describe('DynamoDB client', () => {
   describe('.updateWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
@@ -158,7 +158,7 @@ describe('DynamoDB client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -170,7 +170,7 @@ describe('DynamoDB client', () => {
   describe('.batchWriteWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
@@ -198,7 +198,7 @@ describe('DynamoDB client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
@@ -221,7 +221,7 @@ describe('DynamoDB client', () => {
   describe('.transactWriteWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 

@@ -5,7 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.28.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.28.0...v1.28.1) (2020-12-10)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -13,7 +13,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.28.0](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.27.0...v1.28.0) (2020-12-10)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -32,7 +32,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.24.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.24.0...v1.24.1) (2020-06-03)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -40,7 +40,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.24.0](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.23.2...v1.24.0) (2020-05-29)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -48,7 +48,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.23.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.23.1...v1.23.2) (2020-05-22)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -56,7 +56,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.23.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.23.0...v1.23.1) (2020-04-19)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -64,7 +64,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.23.0](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.22.1...v1.23.0) (2020-04-06)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -72,7 +72,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.22.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.22.0...v1.22.1) (2020-04-01)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -102,7 +102,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.21.0](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.20.0...v1.21.0) (2020-02-09)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -110,7 +110,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.1...v1.15.2) (2019-11-14)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 
@@ -134,7 +134,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [1.11.0](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.10.0...v1.11.0) (2019-09-05)
 
-**Note:** Version bump only for package @dazn/lambda-powertools-firehose-client
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools-firehose-client
 
 
 

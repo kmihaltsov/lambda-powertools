@@ -1,8 +1,8 @@
 process.env.AWS_NODEJS_CONNECTION_REUSE_ENABLED = '1'
 const StepFunctions = require('aws-sdk/clients/stepfunctions')
 const client = new StepFunctions()
-const Log = require('@dazn/lambda-powertools-logger')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 function tryJsonParse (input) {
   try {

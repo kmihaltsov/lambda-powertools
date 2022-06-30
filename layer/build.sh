@@ -2,25 +2,25 @@
 cd nodejs
 
 echo 'installing DAZN powertools'
-npm install @dazn/lambda-powertools-cloudwatchevents-client
-npm install @dazn/lambda-powertools-correlation-ids
-npm install @dazn/lambda-powertools-dynamodb-client
-npm install @dazn/lambda-powertools-eventbridge-client
-npm install @dazn/lambda-powertools-firehose-client
-npm install @dazn/lambda-powertools-http-client
-npm install @dazn/lambda-powertools-kinesis-client
-npm install @dazn/lambda-powertools-lambda-client
-npm install @dazn/lambda-powertools-logger
-npm install @dazn/lambda-powertools-middleware-correlation-ids
-npm install @dazn/lambda-powertools-middleware-log-timeout
-npm install @dazn/lambda-powertools-middleware-obfuscater
-npm install @dazn/lambda-powertools-middleware-sample-logging
-npm install @dazn/lambda-powertools-middleware-stop-infinite-loop
-npm install @dazn/lambda-powertools-pattern-basic
-npm install @dazn/lambda-powertools-pattern-obfuscate
-npm install @dazn/lambda-powertools-sns-client
-npm install @dazn/lambda-powertools-sqs-client
-npm install @dazn/lambda-powertools-step-functions-client
+npm install @kmihaltsov/lambda-powertools-cloudwatchevents-client
+npm install @kmihaltsov/lambda-powertools-correlation-ids
+npm install @kmihaltsov/lambda-powertools-dynamodb-client
+npm install @kmihaltsov/lambda-powertools-eventbridge-client
+npm install @kmihaltsov/lambda-powertools-firehose-client
+npm install @kmihaltsov/lambda-powertools-http-client
+npm install @kmihaltsov/lambda-powertools-kinesis-client
+npm install @kmihaltsov/lambda-powertools-lambda-client
+npm install @kmihaltsov/lambda-powertools-logger
+npm install @kmihaltsov/lambda-powertools-middleware-correlation-ids
+npm install @kmihaltsov/lambda-powertools-middleware-log-timeout
+npm install @kmihaltsov/lambda-powertools-middleware-obfuscater
+npm install @kmihaltsov/lambda-powertools-middleware-sample-logging
+npm install @kmihaltsov/lambda-powertools-middleware-stop-infinite-loop
+npm install @kmihaltsov/lambda-powertools-pattern-basic
+npm install @kmihaltsov/lambda-powertools-pattern-obfuscate
+npm install @kmihaltsov/lambda-powertools-sns-client
+npm install @kmihaltsov/lambda-powertools-sqs-client
+npm install @kmihaltsov/lambda-powertools-step-functions-client
 
 cd ..
 cd ..

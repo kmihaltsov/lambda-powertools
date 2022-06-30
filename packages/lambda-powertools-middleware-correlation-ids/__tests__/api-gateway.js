@@ -18,8 +18,7 @@ describe('Correlation IDs middleware (API Gateway)', () => {
       const event = genApiGatewayEvent()
       invokeHandler(event, requestId, 0, x => {
         expect(x['awsRequestId']).toBe(requestId)
-        expect(x['x-correlation-id']).toBe(event.requestContext.requestId)
-        expect(x['debug-log-enabled']).toBe('false')
+        expect(x['x_correlation_id']).toBe(event.requestContext.requestId)
       })
     })
   })
@@ -30,8 +29,7 @@ describe('Correlation IDs middleware (API Gateway)', () => {
       const event = genApiGatewayEvent()
       invokeHandler(event, requestId, 1, x => {
         expect(x['awsRequestId']).toBe(requestId)
-        expect(x['x-correlation-id']).toBe(event.requestContext.requestId)
-        expect(x['debug-log-enabled']).toBe('true')
+        expect(x['x_correlation_id']).toBe(event.requestContext.requestId)
       })
     })
   })
@@ -41,17 +39,8 @@ describe('Correlation IDs middleware (API Gateway)', () => {
       const requestId = uuid()
       const event = genApiGatewayEvent()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(event.requestContext.requestId)
+        expect(x['x_correlation_id']).toBe(event.requestContext.requestId)
         expect(x['awsRequestId']).toBe(requestId)
-      })
-    })
-  })
-
-  describe('when call-chain-length is not provided in the event', () => {
-    it('sets it to 1', () => {
-      const requestId = uuid()
-      invokeHandler(genApiGatewayEvent(), requestId, 0, x => {
-        expect(x['call-chain-length']).toBe(1)
       })
     })
   })
@@ -62,20 +51,16 @@ describe('Correlation IDs middleware (API Gateway)', () => {
       const userId = uuid()
 
       const correlationIds = {
-        'x-correlation-id': id,
-        'x-correlation-user-id': userId,
-        'User-Agent': 'jest test',
-        'debug-log-enabled': 'true'
+        'x_correlation_id': id,
+        'x_correlation_user-id': userId
       }
 
       const event = genApiGatewayEvent(correlationIds)
 
       const requestId = uuid()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(id)
-        expect(x['x-correlation-user-id']).toBe(userId)
-        expect(x['User-Agent']).toBe('jest test')
-        expect(x['debug-log-enabled']).toBe('true')
+        expect(x['x_correlation_id']).toBe(id)
+        expect(x['x_correlation_user-id']).toBe(userId)
         expect(x['awsRequestId']).toBe(requestId)
       })
     })
@@ -86,16 +71,14 @@ describe('Correlation IDs middleware (API Gateway)', () => {
       const id = uuid()
 
       const correlationIds = {
-        'x-correlation-id': id,
-        'call-chain-length': 1
+        'x_correlation_id': id
       }
 
       const event = genApiGatewayEvent(correlationIds)
 
       const requestId = uuid()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(id)
-        expect(x['call-chain-length']).toBe(2)
+        expect(x['x_correlation_id']).toBe(id)
       })
     })
   })

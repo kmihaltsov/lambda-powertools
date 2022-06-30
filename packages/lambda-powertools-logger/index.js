@@ -1,4 +1,4 @@
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 // Levels here are identical to bunyan practices
 // https://github.com/trentm/node-bunyan#levels

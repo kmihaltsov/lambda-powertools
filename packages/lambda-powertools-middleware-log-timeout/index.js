@@ -1,4 +1,4 @@
-const Log = require('@dazn/lambda-powertools-logger')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
 
 const createTimer = (event, context, thresholdMillis) => {
   if (typeof context.getRemainingTimeInMillis !== 'function') {

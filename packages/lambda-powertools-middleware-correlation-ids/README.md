@@ -1,10 +1,10 @@
 # lambda-powertools-middleware-correlation-ids
 
-A [Middy](https://github.com/middyjs/middy) middleware that extracts correlation IDs from the invocation event and stores them with the `@dazn/lambda-powertools-correlation-ids` package.
+A [Middy](https://github.com/middyjs/middy) middleware that extracts correlation IDs from the invocation event and stores them with the `@kmihaltsov/lambda-powertools-correlation-ids` package.
 
 Main features:
 
-* stores correlation IDs with the `@dazn/lambda-powertools-correlation-ids` package
+* stores correlation IDs with the `@kmihaltsov/lambda-powertools-correlation-ids` package
 
 * supports API Gateway events (HTTP headers)
 
@@ -18,7 +18,7 @@ Main features:
 
 * initializes correlation IDs using the Lambda request ID
 
-* captures anything with prefix `x-correlation-`
+* captures anything with prefix `x_correlation_`
 
 * captures `User-Agent` from API Gateway events
 
@@ -26,9 +26,9 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-middleware-correlation-ids`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-middleware-correlation-ids`
 
-Alternatively, if you use the template `@dazn/lambda-powertools-pattern-basic` then this would be configured for you.
+Alternatively, if you use the template `@kmihaltsov/lambda-powertools-pattern-basic` then this would be configured for you.
 
 ## API
 
@@ -42,7 +42,7 @@ Accepts a configuration object of the following shape:
 
 ```js
 const middy = require('middy')
-const correlationIds = require('@dazn/lambda-powertools-middleware-correlation-ids')
+const correlationIds = require('@kmihaltsov/lambda-powertools-middleware-correlation-ids')
 
 const handler = async (event, context) => {
   return 42
@@ -53,7 +53,7 @@ module.exports = middy(handler)
 }
 ```
 
-This middleware is often used alongside the `@dazn/lambda-powertools-middleware-sample-logging` middleware to implement sample logging. It's **recommended** that you use the `@dazn/lambda-powertools-pattern-basic` which configures both to enable debug logging at 1% of invocations.
+This middleware is often used alongside the `@kmihaltsov/lambda-powertools-middleware-sample-logging` middleware to implement sample logging. It's **recommended** that you use the `@kmihaltsov/lambda-powertools-pattern-basic` which configures both to enable debug logging at 1% of invocations.
 
 ## Logging and Forwarding correlation IDs
 
@@ -61,11 +61,11 @@ This middleware is often used alongside the `@dazn/lambda-powertools-middleware-
 
 Once you have wrapped your handler code, the correlation IDs would be automatically included when:
 
-* you log with the `@dazn/lambda-powertools-logger` logger
-* when you make HTTP requests with the `@dazn/lambda-powertools-http-client` HTTP client
+* you log with the `@kmihaltsov/lambda-powertools-logger` logger
+* when you make HTTP requests with the `@kmihaltsov/lambda-powertools-http-client` HTTP client
 * when you interact with AWS with the various AWS SDK clients from this project
 
-If you're using these accompanying packages then correlation IDs would simply pass through your function. However, if you wish to augment existing correlation IDs then you can also add new correlation IDs to the mix with the `@dazn/lambda-powertools-correlation-ids` package.
+If you're using these accompanying packages then correlation IDs would simply pass through your function. However, if you wish to augment existing correlation IDs then you can also add new correlation IDs to the mix with the `@kmihaltsov/lambda-powertools-correlation-ids` package.
 
 ## Logging and Forwarding correlation IDs for Kinesis and SQS events
 
@@ -81,9 +81,9 @@ For kinesis events, the middleware would do the following for each record:
 
 1. Unzip; base64 decode; parse as JSON; and extract correlation IDs from the record body (in the `__context__` property).
 
-2. Create an instance of `CorrelationIds` (from the `@dazn/lambda-powertools-correlation-ids` package) to hold all the extracted correlation IDs.
+2. Create an instance of `CorrelationIds` (from the `@kmihaltsov/lambda-powertools-correlation-ids` package) to hold all the extracted correlation IDs.
 
-3. Create an instance of `Log` (from the `@dazn/lambda-powertools-logger` package) with the extracted correlation IDs already baked in.
+3. Create an instance of `Log` (from the `@kmihaltsov/lambda-powertools-logger` package) with the extracted correlation IDs already baked in.
 
 4. Attach the correlation IDs and logger to the parsed JSON object.
 
@@ -96,9 +96,9 @@ When using the HTTP client and AWS SDK clients from the powertools packages, you
 Here's an example function.
 
 ```javascript
-const Log = require('@dazn/lambda-powertools-logger')
-const SNS = require('@dazn/lambda-powertools-sns-client')
-const wrap = require('@dazn/lambda-powertools-pattern-basic')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
+const wrap = require('@kmihaltsov/lambda-powertools-pattern-basic')
 
 module.exports.handler = wrap(async (event, context) => {
   const events = context.parsedKinesisEvents
@@ -131,18 +131,18 @@ For SQS events, the middleware would do the following for each record:
 
 1. Eextract correlation IDs from the message attribtues.
 
-2. Create an instance of `CorrelationIds` (from the `@dazn/lambda-powertools-correlation-ids` package) to hold all the extracted correlation IDs.
+2. Create an instance of `CorrelationIds` (from the `@kmihaltsov/lambda-powertools-correlation-ids` package) to hold all the extracted correlation IDs.
 
-3. Create an instance of `Log` (from the `@dazn/lambda-powertools-logger` package) with the extracted correlation IDs already baked in.
+3. Create an instance of `Log` (from the `@kmihaltsov/lambda-powertools-logger` package) with the extracted correlation IDs already baked in.
 
 4. Attach the correlation IDs and logger to the original SQS record object.
 
 When using the HTTP client and AWS SDK clients from the powertools packages, you will need to include them as options or using one of the overload methods. This is similar to the Kinesis example above. Here's an example function:
 
 ```javascript
-const Log = require('@dazn/lambda-powertools-logger')
-const SNS = require('@dazn/lambda-powertools-sns-client')
-const wrap = require('@dazn/lambda-powertools-pattern-basic')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const SNS = require('@kmihaltsov/lambda-powertools-sns-client')
+const wrap = require('@kmihaltsov/lambda-powertools-pattern-basic')
 
 module.exports.handler = wrap(async (event, context) => {
   // you can still use the global Log instance, it'll still have the request ID for

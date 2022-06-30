@@ -8,7 +8,7 @@ AWS.Firehose.prototype.putRecordBatch = mockPutRecordBatch
 global.console.log = jest.fn()
 
 const Firehose = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockPutRecord.mockReturnValueOnce({
@@ -130,14 +130,14 @@ describe('Firehose client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
 
         await verifyPutRecordContext(x => {
           expect(x).toEqual({
-            'x-correlation-id': 'id',
+            'x_correlation_id': 'id',
             'debug-log-enabled': 'true'
           })
         })
@@ -177,13 +177,13 @@ describe('Firehose client', () => {
   describe('.putRecordWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyPutRecordWithCorrelationIdsContext(correlationIds, x => {
         expect(x).toEqual({
-          'x-correlation-id': 'child-id',
+          'x_correlation_id': 'child-id',
           'debug-log-enabled': 'true'
         })
       })
@@ -200,14 +200,14 @@ describe('Firehose client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
 
         await verifyPutRecordBatchContext(x => {
           expect(x).toEqual({
-            'x-correlation-id': 'id',
+            'x_correlation_id': 'id',
             'debug-log-enabled': 'true'
           })
         })
@@ -250,13 +250,13 @@ describe('Firehose client', () => {
   describe('.putRecordBatchWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyPutRecordBatchWithCorrelationIdsContext(correlationIds, x => {
         expect(x).toEqual({
-          'x-correlation-id': 'child-id',
+          'x_correlation_id': 'child-id',
           'debug-log-enabled': 'true'
         })
       })

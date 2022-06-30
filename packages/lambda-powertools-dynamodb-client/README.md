@@ -1,6 +1,6 @@
 # lambda-powertools-dynamodb-client
 
-DynamoDB client wrapper that knows how to forward correlation IDs (captured via `@dazn/lambda-powertools-correlation-ids`).
+DynamoDB client wrapper that knows how to forward correlation IDs (captured via `@kmihaltsov/lambda-powertools-correlation-ids`).
 
 Main features:
 
@@ -10,14 +10,14 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-dynamodb-client`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-dynamodb-client`
 
 ## API
 
 It's exactly the same as the DynamoDB Document client from the AWS SDK.
 
 ```js
-const DynamoDB = require('@dazn/lambda-powertools-dynamodb-client')
+const DynamoDB = require('@kmihaltsov/lambda-powertools-dynamodb-client')
 
 await DynamoDB.put({
   TableName: 'table-name',

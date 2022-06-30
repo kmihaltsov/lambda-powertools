@@ -8,7 +8,7 @@ AWS.Kinesis.prototype.putRecords = mockPutRecords
 global.console.log = jest.fn()
 
 const Kinesis = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockPutRecord.mockReturnValueOnce({
@@ -126,14 +126,14 @@ describe('Kinesis client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
 
         await verifyPutRecordContext(x => {
           expect(x).toEqual({
-            'x-correlation-id': 'id',
+            'x_correlation_id': 'id',
             'debug-log-enabled': 'true'
           })
         })
@@ -169,13 +169,13 @@ describe('Kinesis client', () => {
   describe('.putRecordWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyPutRecordWithCorrelationIdsContext(correlationIds, x => {
         expect(x).toEqual({
-          'x-correlation-id': 'child-id',
+          'x_correlation_id': 'child-id',
           'debug-log-enabled': 'true'
         })
       })
@@ -192,14 +192,14 @@ describe('Kinesis client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__', async () => {
         const correlationIds = {
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         }
         CorrelationIds.replaceAllWith(correlationIds)
 
         await verifyPutRecordsContext(x => {
           expect(x).toEqual({
-            'x-correlation-id': 'id',
+            'x_correlation_id': 'id',
             'debug-log-enabled': 'true'
           })
         })
@@ -242,13 +242,13 @@ describe('Kinesis client', () => {
   describe('.putRecordsWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
       await verifyPutRecordsWithCorrelationIdsContext(correlationIds, x => {
         expect(x).toEqual({
-          'x-correlation-id': 'child-id',
+          'x_correlation_id': 'child-id',
           'debug-log-enabled': 'true'
         })
       })

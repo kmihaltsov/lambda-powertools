@@ -1,6 +1,6 @@
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 const HTTP = require('superagent-promise')(require('superagent'), Promise)
-const Metrics = require('@dazn/datadog-metrics')
+const Metrics = require('@kmihaltsov/datadog-metrics')
 const URL = require('url')
 
 const AWS_REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION
@@ -70,7 +70,7 @@ function setBody (request, body) {
 //    metricName [optional] : string  (e.g. adyenApi)
 //    metricTags [optional] : string []  (e.g. ['request_type:submit', 'load_test'], by default we add function name, version, HTTP method, path, and response statusCode for you as tags)
 //    timeout [optional] : int (ms)
-//    correlationIds : CorrelationIds (an instance of @dazn/lambda-powertools-correlation-ids class)
+//    correlationIds : CorrelationIds (an instance of @kmihaltsov/lambda-powertools-correlation-ids class)
 //  }
 const Req = (options) => {
   if (!options) {

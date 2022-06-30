@@ -32,7 +32,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.28.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.28.0...v1.28.1) (2020-12-10)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -90,7 +90,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.24.3](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.24.2...v1.24.3) (2020-07-24)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -98,7 +98,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.24.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.24.1...v1.24.2) (2020-07-23)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -106,7 +106,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.24.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.24.0...v1.24.1) (2020-06-03)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -126,7 +126,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.23.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.23.1...v1.23.2) (2020-05-22)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -156,7 +156,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.22.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.22.0...v1.22.1) (2020-04-01)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -227,7 +227,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.18.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.18.0...v1.18.1) (2020-01-07)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -282,7 +282,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.6](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.5...v1.15.6) (2019-11-15)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -290,7 +290,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.5](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.4...v1.15.5) (2019-11-15)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -298,7 +298,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.4](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.3...v1.15.4) (2019-11-15)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -306,7 +306,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.3](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.2...v1.15.3) (2019-11-15)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -314,7 +314,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.1...v1.15.2) (2019-11-14)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -322,7 +322,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.15.1](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.15.0...v1.15.1) (2019-11-14)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -448,7 +448,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.8.3](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.8.2...v1.8.3) (2019-07-25)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 
@@ -456,7 +456,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [1.8.2](https://github.com/getndazn/dazn-lambda-powertools/compare/v1.8.1...v1.8.2) (2019-07-24)
 
-**Note:** Version bump only for package @dazn/lambda-powertools
+**Note:** Version bump only for package @kmihaltsov/lambda-powertools
 
 
 

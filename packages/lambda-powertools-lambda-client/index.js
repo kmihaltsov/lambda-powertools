@@ -3,8 +3,8 @@ const Lambda = require('aws-sdk/clients/lambda')
 const client = new Lambda({
   endpoint: process.env.IS_OFFLINE ? 'http://localhost:3000' : undefined
 })
-const Log = require('@dazn/lambda-powertools-logger')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 function tryJsonParse (input) {
   if (typeof input !== 'string') {

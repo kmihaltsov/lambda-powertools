@@ -1,6 +1,6 @@
 # lambda-powertools-cloudwatchevents-client
 
-CloudWatchEvents client wrapper that knows how to forward correlation IDs (captured via `@dazn/lambda-powertools-correlation-ids`).
+CloudWatchEvents client wrapper that knows how to forward correlation IDs (captured via `@kmihaltsov/lambda-powertools-correlation-ids`).
 
 Main features:
 
@@ -10,14 +10,14 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-cloudwatchevents-client`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-cloudwatchevents-client`
 
 ## API
 
 It's exactly the same as the CloudWatchEvents client from the AWS SDK.
 
 ```js
-const CloudWatchEvents = require('@dazn/lambda-powertools-cloudwatchevents-client')
+const CloudWatchEvents = require('@kmihaltsov/lambda-powertools-cloudwatchevents-client')
 
 const publishEvents = async () => {
   const putEventsReq = {

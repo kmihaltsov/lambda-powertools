@@ -1,8 +1,8 @@
-const Log = require('@dazn/lambda-powertools-logger')
-const Lambda = require('@dazn/lambda-powertools-lambda-client')
-const SFN = require('@dazn/lambda-powertools-step-functions-client')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
-const snsProcessor = require('@dazn/lambda-powertools-pattern-basic')
+const Log = require('@kmihaltsov/lambda-powertools-logger')
+const Lambda = require('@kmihaltsov/lambda-powertools-lambda-client')
+const SFN = require('@kmihaltsov/lambda-powertools-step-functions-client')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
+const snsProcessor = require('@kmihaltsov/lambda-powertools-pattern-basic')
 const uuid = require('uuid/v4')
 
 module.exports.handler = snsProcessor(async (event, context) => {

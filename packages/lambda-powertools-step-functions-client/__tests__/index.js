@@ -6,7 +6,7 @@ const mockStartExecution = jest.fn()
 AWS.StepFunctions.prototype.startExecution = mockStartExecution
 
 const SFN = require('../index')
-const CorrelationIds = require('@dazn/lambda-powertools-correlation-ids')
+const CorrelationIds = require('@kmihaltsov/lambda-powertools-correlation-ids')
 
 beforeEach(() => {
   mockStartExecution.mockReturnValueOnce({
@@ -47,7 +47,7 @@ describe('Step functions client', () => {
     describe('when there are global correlationIds', () => {
       it('forwards them in __context__ field', async () => {
         CorrelationIds.replaceAllWith({
-          'x-correlation-id': 'id',
+          'x_correlation_id': 'id',
           'debug-log-enabled': 'true'
         })
 
@@ -67,7 +67,7 @@ describe('Step functions client', () => {
           input,
           {
             __context__: {
-              'x-correlation-id': 'id',
+              'x_correlation_id': 'id',
               'debug-log-enabled': 'true'
             }
           })
@@ -97,7 +97,7 @@ describe('Step functions client', () => {
   describe('.startExecutionWithCorrelationIds', () => {
     it('forwards given correlationIds in __context__ field', async () => {
       const correlationIds = new CorrelationIds({
-        'x-correlation-id': 'child-id',
+        'x_correlation_id': 'child-id',
         'debug-log-enabled': 'true'
       })
 
@@ -117,7 +117,7 @@ describe('Step functions client', () => {
         input,
         {
           __context__: {
-            'x-correlation-id': 'child-id',
+            'x_correlation_id': 'child-id',
             'debug-log-enabled': 'true'
           }
         })

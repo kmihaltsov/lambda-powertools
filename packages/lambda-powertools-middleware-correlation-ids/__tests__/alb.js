@@ -18,8 +18,7 @@ describe('Correlation IDs middleware (ALB)', () => {
       const event = genAlbEvent()
       invokeHandler(event, requestId, 0, x => {
         expect(x['awsRequestId']).toBe(requestId)
-        expect(x['x-correlation-id']).toBe(requestId)
-        expect(x['debug-log-enabled']).toBe('false')
+        expect(x['x_correlation_id']).toBe(requestId)
       })
     })
   })
@@ -30,8 +29,7 @@ describe('Correlation IDs middleware (ALB)', () => {
       const event = genAlbEvent()
       invokeHandler(event, requestId, 1, x => {
         expect(x['awsRequestId']).toBe(requestId)
-        expect(x['x-correlation-id']).toBe(requestId)
-        expect(x['debug-log-enabled']).toBe('true')
+        expect(x['x_correlation_id']).toBe(requestId)
       })
     })
   })
@@ -41,17 +39,8 @@ describe('Correlation IDs middleware (ALB)', () => {
       const requestId = uuid()
       const event = genAlbEvent()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(requestId)
+        expect(x['x_correlation_id']).toBe(requestId)
         expect(x['awsRequestId']).toBe(requestId)
-      })
-    })
-  })
-
-  describe('when call-chain-length is not provided in the event', () => {
-    it('sets it to 1', () => {
-      const requestId = uuid()
-      invokeHandler(genAlbEvent(), requestId, 0, x => {
-        expect(x['call-chain-length']).toBe(1)
       })
     })
   })
@@ -62,8 +51,8 @@ describe('Correlation IDs middleware (ALB)', () => {
       const userId = uuid()
 
       const correlationIds = {
-        'x-correlation-id': id,
-        'x-correlation-user-id': userId,
+        'x_correlation_id': id,
+        'x_correlation_user-id': userId,
         'user-agent': 'jest test',
         'debug-log-enabled': 'true'
       }
@@ -72,10 +61,8 @@ describe('Correlation IDs middleware (ALB)', () => {
 
       const requestId = uuid()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(id)
-        expect(x['x-correlation-user-id']).toBe(userId)
-        expect(x['User-Agent']).toBe('jest test')
-        expect(x['debug-log-enabled']).toBe('true')
+        expect(x['x_correlation_id']).toBe(id)
+        expect(x['x_correlation_user-id']).toBe(userId)
         expect(x['awsRequestId']).toBe(requestId)
       })
     })
@@ -86,7 +73,7 @@ describe('Correlation IDs middleware (ALB)', () => {
       const id = uuid()
 
       const correlationIds = {
-        'x-correlation-id': id,
+        'x_correlation_id': id,
         'call-chain-length': 1
       }
 
@@ -94,7 +81,7 @@ describe('Correlation IDs middleware (ALB)', () => {
 
       const requestId = uuid()
       invokeHandler(event, requestId, 0, x => {
-        expect(x['x-correlation-id']).toBe(id)
+        expect(x['x_correlation_id']).toBe(id)
         expect(x['call-chain-length']).toBe(2)
       })
     })

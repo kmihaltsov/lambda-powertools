@@ -8,9 +8,9 @@ Main features:
 
 ## Getting Started
 
-Install from NPM: `npm install @dazn/lambda-powertools-middleware-obfuscater`
+Install from NPM: `npm install @kmihaltsov/lambda-powertools-middleware-obfuscater`
 
-Alternatively, if you use the template `@dazn/lambda-powertools-pattern-obfuscate` then this would be configured for you.
+Alternatively, if you use the template `@kmihaltsov/lambda-powertools-pattern-obfuscate` then this would be configured for you.
 
 ## API
 
@@ -60,7 +60,7 @@ This will recursively filter every object and subobjects
 
 ```js
 const middy = require('middy')
-const obfuscatedLogging = require('@dazn/lambda-powertools-middleware-obfuscater')
+const obfuscatedLogging = require('@kmihaltsov/lambda-powertools-middleware-obfuscater')
 
 const handler = async (event, context) => {
   return 42
@@ -71,4 +71,4 @@ module.exports = middy(handler)
 }
 ```
 
-This middleware is often used alongside the `@dazn/lambda-powertools-middleware-correlation-ids` middleware to implement sample logging. It's **recommended** that you use the `@dazn/lambda-powertools-pattern-obfuscate` which configures both to enable debug logging at 1% of invocations.
+This middleware is often used alongside the `@kmihaltsov/lambda-powertools-middleware-correlation-ids` middleware to implement sample logging. It's **recommended** that you use the `@kmihaltsov/lambda-powertools-pattern-obfuscate` which configures both to enable debug logging at 1% of invocations.

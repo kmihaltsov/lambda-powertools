@@ -8,76 +8,64 @@ global.console.error = jest.fn()
 const suite = (correlationIds) => () => {
   afterEach(correlationIds.clearAll)
   describe('.set', () => {
-    describe('when the key is missing x-correlation- prefix', () => {
+    describe('when the key is missing x_correlation_ prefix', () => {
       beforeEach(() => {
         correlationIds.set('id', 'test')
       })
       it('adds the prefix', () => {
         expect(correlationIds.get()).toEqual({
-          'x-correlation-id': 'test'
+          'x_correlation_id': 'test'
         })
       })
     })
 
-    describe('when the key has x-correlation-prefix', () => {
+    describe('when the key has x_correlation_prefix', () => {
       beforeEach(() => {
-        correlationIds.set('x-correlation-id', 'test')
+        correlationIds.set('x_correlation_id', 'test')
       })
       it('sets it as is', () => {
         expect(correlationIds.get()).toEqual({
-          'x-correlation-id': 'test'
+          'x_correlation_id': 'test'
         })
       })
     })
 
     describe('when setting twice', () => {
       beforeEach(() => {
-        correlationIds.set('x-correlation-id', 'hello')
-        correlationIds.set('x-correlation-id', 'world')
+        correlationIds.set('x_correlation_id', 'hello')
+        correlationIds.set('x_correlation_id', 'world')
       })
       it('overrides the previous value', () => {
         expect(correlationIds.get()).toEqual({
-          'x-correlation-id': 'world'
+          'x_correlation_id': 'world'
         })
-      })
-    })
-  })
-
-  describe('get/set debug logging', () => {
-    it('GETS and SETS state of debug logging', () => {
-      correlationIds.clearAll()
-      expect(correlationIds.debugLoggingEnabled).toBe(false)
-      correlationIds.debugLoggingEnabled = true
-      expect(correlationIds.debugLoggingEnabled).toBe(true)
-      expect(correlationIds.get()).toEqual({
-        'debug-log-enabled': 'true'
       })
     })
   })
 
   describe('.replaceAllWith', () => {
     beforeEach(() => {
-      correlationIds.set('x-correlation-id', 'this should be replaced')
-      correlationIds.set('x-correlation-user-id', 'this should be removed')
+      correlationIds.set('x_correlation_id', 'this should be replaced')
+      correlationIds.set('x_correlation_user-id', 'this should be removed')
     })
     it('replaces all existing IDs', () => {
       correlationIds.replaceAllWith({
-        'x-correlation-id': 'id',
-        'x-correlation-order-id': 'order'
+        'x_correlation_id': 'id',
+        'x_correlation_order-id': 'order'
       })
 
       const ids = correlationIds.get()
-      expect(ids).toHaveProperty('x-correlation-id')
-      expect(ids['x-correlation-id']).toBe('id')
-      expect(ids).not.toHaveProperty('x-correlation-user-id')
-      expect(ids).toHaveProperty('x-correlation-order-id')
-      expect(ids['x-correlation-order-id']).toBe('order')
+      expect(ids).toHaveProperty('x_correlation_id')
+      expect(ids['x_correlation_id']).toBe('id')
+      expect(ids).not.toHaveProperty('x_correlation_user-id')
+      expect(ids).toHaveProperty('x_correlation_order-id')
+      expect(ids['x_correlation_order-id']).toBe('order')
     })
   })
 
   describe('.clearAll', () => {
     it('removes all correlation IDs', () => {
-      correlationIds.set('x-correlation-id', 'this should be removed')
+      correlationIds.set('x_correlation_id', 'this should be removed')
 
       correlationIds.clearAll()
 
@@ -107,7 +95,7 @@ describe('Global references', () => {
       expect(NewCorrelationIds).not.toBe(CorrelationIds)
 
       expect(NewCorrelationIds.get()).toEqual({
-        'x-correlation-testing': 'true'
+        'x_correlation_testing': 'true'
       })
     })
   })
